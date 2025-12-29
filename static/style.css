@@ -1,0 +1,204 @@
+/* ------------------------------
+   Animated Gradient Background
+--------------------------------*/
+.background {
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(120deg, #667eea, #764ba2, #6b8cff);
+    background-size: 200% 200%;
+    animation: gradientMove 12s ease infinite;
+    z-index: -1;
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ------------------------------
+   Main Layout
+--------------------------------*/
+.main-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ------------------------------
+   Glassmorphism Card
+--------------------------------*/
+.glass-card {
+    backdrop-filter: blur(18px);
+    background: rgba(255, 255, 255, 0.22);
+    border-radius: 24px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.35);
+    padding: 45px;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.glass-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 40px 100px rgba(0,0,0,0.4);
+}
+
+/* ------------------------------
+   Left Panel
+--------------------------------*/
+.left-panel {
+    color: #ffffff;
+}
+
+.left-panel h1 {
+    font-weight: 800;
+    font-size: 2.5rem;
+}
+
+.tagline {
+    opacity: 0.9;
+    margin-bottom: 25px;
+}
+
+.features li {
+    list-style: none;
+    margin: 14px 0;
+    font-size: 1.1rem;
+}
+
+.features i {
+    margin-right: 10px;
+    color: #ffdd57;
+}
+
+/* ------------------------------
+   Right Panel
+--------------------------------*/
+.right-panel textarea {
+    width: 100%;
+    border-radius: 16px;
+    padding: 18px;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    resize: none;
+    box-shadow: inset 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.char-counter {
+    font-size: 0.9rem;
+    margin: 6px 0 18px;
+    color: #111827;
+    opacity: 0.75;
+}
+
+/* ------------------------------
+   Analyze Button
+--------------------------------*/
+.analyze-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #4f46e5, #9333ea);
+    color: white;
+    padding: 14px;
+    border-radius: 14px;
+    border: none;
+    font-weight: 700;
+    font-size: 1.05rem;
+    transition: all 0.3s ease;
+}
+
+.analyze-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(79,70,229,0.6);
+}
+
+/* ------------------------------
+   Loader
+--------------------------------*/
+.loader {
+    width: 45px;
+    height: 45px;
+    border: 4px solid rgba(255,255,255,0.5);
+    border-top: 4px solid #fff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 25px auto;
+}
+
+.hidden {
+    display: none;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ------------------------------
+   Result Card
+--------------------------------*/
+.result-card {
+    margin-top: 30px;
+    padding: 28px;
+    border-radius: 20px;
+    animation: slideUp 0.6s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.result-card.positive {
+    background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+}
+
+.result-card.neutral {
+    background: linear-gradient(135deg, #fef9c3, #fde68a);
+}
+
+.result-card.negative {
+    background: linear-gradient(135deg, #fee2e2, #fecaca);
+}
+
+.result-text {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-top: 8px;
+}
+
+/* ------------------------------
+   Confidence Bar
+--------------------------------*/
+.confidence-wrapper {
+    margin-top: 15px;
+}
+
+.progress-bar-bg {
+    height: 12px;
+    background: rgba(0,0,0,0.15);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 999px;
+    transition: width 1.6s ease;
+}
+
+.result-card.positive .progress-bar-fill {
+    background: linear-gradient(90deg, #22c55e, #16a34a);
+}
+
+.result-card.neutral .progress-bar-fill {
+    background: linear-gradient(90deg, #facc15, #eab308);
+}
+
+.result-card.negative .progress-bar-fill {
+    background: linear-gradient(90deg, #ef4444, #b91c1c);
+}
+
+/* ------------------------------
+   Animations
+--------------------------------*/
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(25px); }
+    to { opacity: 1; transform: translateY(0); }
+}
