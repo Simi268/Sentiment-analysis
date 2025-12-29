@@ -1,27 +1,19 @@
 import sys
 import logging
 from flask import Flask, render_template, request
-
 from src.pipeline.predict_pipeline import Predictor
 from src.exception import CustomException
 
-# ------------------------
-# Flask app initialization
-# ------------------------
+
 app = Flask(__name__)
 
-# ------------------------
-# Initialize Predictor
-# ------------------------
+
 try:
     predictor = Predictor()
 except Exception as e:
     logging.error("Error initializing predictor", exc_info=True)
     raise CustomException(e, sys)
 
-# ------------------------
-# Routes
-# ------------------------
 @app.route("/", methods=["GET", "POST"])
 def index():
     error_message = None
@@ -33,7 +25,7 @@ def index():
         if request.method == "POST":
             review_text = request.form.get("review")
 
-            # Empty input validation
+            
             if not review_text or review_text.strip() == "":
                 error_message = "Please enter some text to analyze."
             else:
@@ -55,9 +47,6 @@ def index():
         logging.error("Error occurred in Flask route", exc_info=True)
         error_message = "Something went wrong. Please try again."
 
-        # ❌ Do NOT raise CustomException in Flask UI
-        # raise CustomException(e, sys)
-
     return render_template(
         "index.html",
         sentiment_label=sentiment_label,
@@ -66,9 +55,6 @@ def index():
         error_message=error_message
     )
 
-# ------------------------
-# Main
-# ------------------------
 if __name__ == "__main__":
     app.run(debug=True)
 
